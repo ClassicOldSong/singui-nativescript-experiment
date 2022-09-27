@@ -6,8 +6,8 @@
   "dependencies": {
     "@nativescript/core": "~8.3.5",
     "@nativescript/theme": "~3.0.2",
-    "@utls/undom-ef": "^0.4.2",
-    "dominative": "^0.0.4-alpha.6",
+    "@utls/undom-ef": "^0.4.3",
+    "dominative": "^0.0.4-alpha.7",
     "singui": "^0.2.6-alpha.1"
   },
   "devDependencies": {
