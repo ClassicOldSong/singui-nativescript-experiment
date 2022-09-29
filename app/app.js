@@ -23,8 +23,8 @@ setGlobalCtx(browser());
 
 const tags = useTags(false);
 
-const app = () =>
-  build(() => {
+const app = (target) =>
+  build(({ attach }) => {
     const {
       ActionBar,
       NavigationButton,
@@ -36,49 +36,47 @@ const app = () =>
 
     let frameElement = null;
 
-    Frame(() => {
-      frameElement = useElement();
-      Page(() => {
-        ActionBar(() => {
-          prop.title = 'Hello World!';
-          NavigationButton(() => {
-            prop.text = 'Go Back';
-            if (isAndroid) prop.android.systemIcon = 'ic_menu_back';
-          });
-          ActionItem(() => {
-            prop.text = 'Alert';
-            if (isIOS) prop.ios.position = 'right';
-            on('tap', () => {
-              alert('This is an alert!');
-            });
-          });
-        });
-
-        StackLayout(() => {
-          Label(() => {
-            prop.className = 'center';
-            text('Welcome to SingUI!');
-          });
-          Button(() => {
-            attr.class = '-primary';
-            let count = 0;
-            const setText = text().$textContent(
-              (val) => `You have clicked ${count} times!`
-            );
-            on('tap', () => {
-              count += 1;
-              setText(count);
-            });
-
-            setText();
-          });
+    ActionBar(() => {
+      prop.title = 'Hello World!';
+      NavigationButton(() => {
+        prop.text = 'Go Back';
+        if (isAndroid) prop.android.systemIcon = 'ic_menu_back';
+      });
+      ActionItem(() => {
+        prop.text = 'Alert';
+        if (isIOS) prop.ios.position = 'right';
+        on('tap', () => {
+          alert('This is an alert!');
         });
       });
     });
 
-    return frameElement;
+    StackLayout(() => {
+      Label(() => {
+        prop.className = 'center';
+        text('Welcome to SingUI!');
+      });
+      Button(() => {
+        attr.class = '-primary';
+        let count = 0;
+        const setText = text().$textContent(
+          (val) => `You have clicked ${count} times!`
+        );
+        on('tap', () => {
+          count += 1;
+          setText(count);
+        });
+
+        setText();
+      });
+    });
+
+    attach(target);
   });
 
 Application.run({
-  create: () => app(),
+  create: () => {
+    app(document.documentElement);
+    return document;
+  },
 });
