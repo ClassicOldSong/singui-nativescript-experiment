@@ -26,8 +26,6 @@ const tags = useTags(false);
 const app = () =>
   build(() => {
     const {
-      Frame,
-      Page,
       ActionBar,
       NavigationButton,
       ActionItem,
