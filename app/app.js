@@ -48,11 +48,7 @@ const app = (target) =>
 
       const { ret: setText } = Label(() => {
         prop.className = 'center';
-        const setText = text().$textContent(
-          () => `You have clicked ${count} times!`
-        );
-
-        return setText;
+        return text().$textContent(() => `You have clicked ${count} times!`);
       });
 
       Button(() => {
