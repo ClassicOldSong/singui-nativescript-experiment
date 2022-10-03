@@ -1,5 +1,3 @@
-import * as NSCore from '@nativescript/core';
-// eslint-disable-next-line no-duplicate-imports
 import { Application } from '@nativescript/core';
 import { isAndroid, isIOS } from '@nativescript/core/platform';
 import { alert } from '@nativescript/core/ui/dialogs';
@@ -16,10 +14,7 @@ import {
   on,
 } from 'singui';
 
-global.NSCore = NSCore;
-global.document = document;
-
-setGlobalCtx(browser());
+setGlobalCtx(browser(document));
 
 const tags = useTags(false);
 
