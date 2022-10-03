@@ -9,7 +9,6 @@ import {
   prop,
   setGlobalCtx,
   useTags,
-  useElement,
   build,
   on,
 } from 'singui';
@@ -29,10 +28,8 @@ const app = (target) =>
       Button,
     } = tags;
 
-    let frameElement = null;
-
     ActionBar(() => {
-      prop.title = 'Hello World!';
+      prop.title = 'Hello SingUI!';
       NavigationButton(() => {
         prop.text = 'Go Back';
         if (isAndroid) prop.android.systemIcon = 'ic_menu_back';
@@ -47,16 +44,20 @@ const app = (target) =>
     });
 
     StackLayout(() => {
-      Label(() => {
+      let count = 0;
+
+      const { ret: setText } = Label(() => {
         prop.className = 'center';
-        text('Welcome to SingUI!');
+        const setText = text().$textContent(
+          () => `You have clicked ${count} times!`
+        );
+
+        return setText;
       });
+
       Button(() => {
         attr.class = '-primary';
-        let count = 0;
-        const setText = text().$textContent(
-          (val) => `You have clicked ${count} times!`
-        );
+        text('Tap me!');
         on('tap', () => {
           count += 1;
           setText(count);
