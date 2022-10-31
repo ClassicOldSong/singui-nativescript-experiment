@@ -70,7 +70,8 @@ const app = (target) =>
 
 Application.run({
   create: () => {
-    app(document.documentElement);
+    document.body.actionBarHidden = false;
+    app(document.body);
     return document;
   },
 });
