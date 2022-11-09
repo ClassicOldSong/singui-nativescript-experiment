@@ -11,6 +11,8 @@ import {
   useTags,
   build,
   on,
+  useSignal,
+  mux,
 } from 'singui';
 
 setGlobalCtx(browser(document));
@@ -44,12 +46,12 @@ const app = (target) =>
     });
 
     StackLayout(() => {
-      let count = 0;
+      const count = useSignal(0);
 
-      const { ret: setText } = Label(() => {
+      Label(() => {
         prop.className = 'center';
-        return text().$textContent(
-          () => `You have tapped ${count} time${count === 1 ? '' : 's'}`
+        text(
+          mux`You have tapped ${count} time${() => (count() === 1 ? '' : 's')}`
         );
       });
 
@@ -57,11 +59,8 @@ const app = (target) =>
         attr.class = '-primary';
         text('Tap me!');
         on('tap', () => {
-          count += 1;
-          setText(count);
+          count((i) => i + 1);
         });
-
-        setText();
       });
     });
 
