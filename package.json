@@ -7,12 +7,12 @@
     "@nativescript/core": "~8.3.6",
     "@nativescript/theme": "~3.0.2",
     "dominative": "^0.0.7-alpha.2",
-    "singui": "^0.3.5",
+    "singui": "^0.3.7",
     "undom-ng": "^1.0.2"
   },
   "devDependencies": {
     "@nativescript/preview-cli": "1.0.2",
-    "@nativescript/stackblitz": "0.0.5",
+    "@nativescript/stackblitz": "0.0.6",
     "@nativescript/webpack": "alpha"
   }
 }
